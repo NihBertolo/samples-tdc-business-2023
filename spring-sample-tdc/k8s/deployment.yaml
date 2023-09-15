@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-sample-tdc
+  labels:
+    app: spring-sample-tdc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-sample-tdc
+  template:
+    metadata:
+      labels:
+        app: spring-sample-tdc
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+        prometheus.io/path: "/actuator/prometheus"
+    spec:
+      containers:
+        - name: spring-sample-tdc
+          image: nihbertolo97/tdc-business-2023:spring-sample-tdc
+          ports:
+            - containerPort: 8080
+              name: http
+            - containerPort: 50051
+              name: grpc

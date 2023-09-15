@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://example.com" targetNamespace="http://example.com" elementFormDefault="qualified">
+
+    <xs:complexType name="SocialMedia">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="icon" type="xs:string"/>
+            <xs:element name="link" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Speaker">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="selfDescription" type="xs:string"/>
+            <xs:element name="socialMedias" type="tns:SocialMedia" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Lecture">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="speaker" type="tns:Speaker"/>
+            <xs:element name="time" type="xs:time"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LearningTrail">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="lectures" type="tns:Lecture" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="date" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LearningTrailResponse">
+        <xs:sequence>
+            <xs:element name="learningTrails" type="tns:LearningTrail" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="LearningTrailResponse" type="tns:LearningTrailResponse"/>
+
+</xs:schema>

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"golang-sample-tdc/config"
+	"golang-sample-tdc/internal/adapter"
 	"log"
 	"net/http"
 	"net/url"
@@ -14,8 +15,8 @@ type RestClient struct {
 	httpClient *http.Client
 }
 
-func fetchLearningTrails(localDate string, localDateTime string) (LearningTrailResponse, error) {
-	var learningTrailResponse LearningTrailResponse
+func fetchLearningTrails(localDate string, localDateTime string) (adapter.LearningTrailResponse, error) {
+	var learningTrailResponse adapter.LearningTrailResponse
 
 	appConfig, err := config.NewAppConfig("config.json")
 	if err != nil {

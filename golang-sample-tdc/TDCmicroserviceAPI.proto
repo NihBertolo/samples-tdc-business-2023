@@ -1,0 +1,48 @@
+syntax = "proto3";
+package learning;
+option go_package = "internal/adapter/learningpb";
+
+import "google/protobuf/timestamp.proto";
+
+service LearningTrailApi {
+    rpc FindLearningTrail(FindLearningTrailByDateRequest) returns (LearningTrailResponse) {}
+    rpc FindAllLearningTrail(FindAllLearningTrailRequest) returns (LearningTrailResponse) {}
+    rpc FindAllLearningTrailByDate(FindLearningTrailByDateRequest) returns (LearningTrailResponse) {}
+}
+
+message FindLearningTrailByDateRequest {
+    google.protobuf.Timestamp date = 1;
+}
+
+message FindAllLearningTrailRequest {
+
+}
+
+message LearningTrailResponse {
+    repeated LearningTrail learning_trails = 1;
+}
+
+message LearningTrail {
+    string name = 1;
+    repeated Lecture lectures = 2;
+    google.protobuf.Timestamp date = 3;
+}
+
+message Lecture {
+    string name = 1;
+    string description = 2;
+    Speaker speaker = 3;
+    google.protobuf.Timestamp time = 4;
+}
+
+message Speaker {
+    string name = 1;
+    string self_description = 2;
+    repeated SocialMedia social_medias = 3;
+}
+
+message SocialMedia {
+    string name = 1;
+    string icon = 2;
+    string link = 3;
+}

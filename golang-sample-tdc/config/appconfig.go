@@ -8,7 +8,8 @@ import (
 
 // AppConfig representa a configuração da aplicação.
 type AppConfig struct {
-	APIURL string
+	APIURL       string
+	ADDRESS_PORT string
 }
 
 func NewAppConfig(configPath string) (*AppConfig, error) {
@@ -19,8 +20,10 @@ func NewAppConfig(configPath string) (*AppConfig, error) {
 	}
 
 	apiURL := viper.GetString("api_url")
+	addressPort := viper.GetString("address_port")
 
 	return &AppConfig{
-		APIURL: apiURL,
+		APIURL:       apiURL,
+		ADDRESS_PORT: addressPort,
 	}, nil
 }
